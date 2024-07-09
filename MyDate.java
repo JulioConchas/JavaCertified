@@ -1,6 +1,7 @@
 package JavaCertified;
 /*
  * 06/27/2024 Julio Conchas Lab01 Creating Classes
+ * 07/03/2023 Julio Conchas Lab3 Static
  */
 public class MyDate 
 {
