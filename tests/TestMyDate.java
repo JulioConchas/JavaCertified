@@ -27,6 +27,8 @@ public class TestMyDate
         System.out.println(str2);
         System.out.println(str3);
         System.out.println(str4);
+
+        MyDate.leapYears();
     }
     
 }

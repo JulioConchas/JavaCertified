@@ -63,11 +63,11 @@ public class Order
         switch (jobSize())
         {
             case 'M':
-                orderTotal -= 0.01;
+                orderTotal -= ( this.orderAmount * 0.01 ); // Lab answer
             case 'L':
-                orderTotal -= 0.02;
+                orderTotal -= ( this.orderAmount * 0.02 ); // Lab answer
             case 'X':
-                orderTotal -= 0.03;
+                orderTotal -= ( this.orderAmount * 0.03 ); // Lab answer
         }
         if ( this.orderAmount < 1500 )
             orderTotal += computeTax();
@@ -82,11 +82,13 @@ public class Order
         {
             classification = 'S';
         }
-        else if ( this.quantity >= 26 && this.quantity <= 75 )
+        // Lab answer
+        else if ( this.quantity <= 75 )
         {
             classification = 'M';
         }
-        else if ( this.quantity >= 76 && this.quantity <= 150 )
+        // Lab answer
+        else if ( this.quantity <= 150 )
         {
             classification = 'L';
         }
