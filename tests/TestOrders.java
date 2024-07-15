@@ -1,5 +1,7 @@
 package JavaCertified.tests;
 
+import javax.sound.midi.Soundbank;
+
 import JavaCertified.MyDate;
 import JavaCertified.Order;
 
@@ -30,6 +32,9 @@ public class TestOrders
         Order.computeTaxOn(3000.0);
         anvil.computeTax();
         balloons.computeTax();
+
+        System.out.println("The total bill for : " + anvil + " is " + anvil.computeTotal());
+        System.out.println("The total bill for : " + balloons + " is " + balloons.computeTotal());
 
     }    
 }
