@@ -3,6 +3,7 @@ package JavaCertified;
  * 06/27/2024 Julio Conchas Lab01 Creating Classes
  * 07/03/2024 Julio Conchas Lab3 Static
  * 07/15/2024 Julio Conchas lab06 Syntax
+ * 07/15/2024 Julio Conchas Lab08 Encapsulation 
  */
 
 import javax.xml.crypto.KeySelector.Purpose;
@@ -11,11 +12,11 @@ import JavaCertified.MyDate;
 
 public class Order 
 {
-    MyDate orderDate;
-    double orderAmount = 0.00;
-    String customer;
-    String product;
-    int quantity;
+    private MyDate orderDate;
+    private double orderAmount = 0.00;
+    private String customer;
+    private String product;
+    private int quantity;
 
     static
     {
@@ -43,7 +44,56 @@ public class Order
         this.orderAmount = orderAmount;
         this.customer = customer;
     }
-
+    /*
+     * GETTERS
+     */
+    public MyDate getOrderDate()
+    {
+        return orderDate;
+    }
+    public double getOrderAmount()
+    {
+        return orderAmount;
+    }
+    public String getCustomer()
+    {
+        return customer;
+    }
+    public String getProducts()
+    {
+        return product;
+    }
+    public int getQuantity()
+    {
+        return quantity;
+    }
+    /*
+     * SETTERS
+     */
+    public void setOrderDate(MyDate orderDate)
+    {
+        this.orderDate = orderDate;
+    }
+    public void setOrderAmount(double orderAmount)
+    {
+        if (!isPositive(quantity)) 
+            System.out.println("Only positive Amount please!");
+        this.orderAmount = orderAmount;
+    }
+    public void setCustomer(String customer)
+    {
+        this.customer = customer;
+    }
+    public void setProducts(String product)
+    {
+        this.product = product;
+    }
+    public void setQuantity(int quantity)
+    {
+        if (!isPositive(quantity)) 
+            System.out.println("Only positive quantity please!");
+        this.quantity = quantity;
+    }
     public static void setTaxRate( double newRate )
     {
         taxRate = newRate;
@@ -98,10 +148,16 @@ public class Order
         }
         return classification;
     }
-
     public String toString()
     {
         return quantity + " ea. " + product + " for " + customer;
+    }
+    /*
+     * PRIVATE
+     */
+    private boolean isPositive(int n)
+    {
+        return (n > 0);
     }
     
 }
