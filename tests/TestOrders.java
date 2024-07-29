@@ -40,5 +40,9 @@ public class TestOrders
         System.out.println("The total bill for : " + anvil + " is " + anvil.computeTotal());
         System.out.println("The total bill for : " + balloons + " is " + balloons.computeTotal());
 
+        // lab 10 bonus Lab
+        System.out.println("The volue of the anvil is: " + anvil.getProducts().volume());
+        System.out.println("The length of the anvil is: " + ((Solid)anvil.getProducts()).getLength());
+
     }    
 }
