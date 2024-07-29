@@ -1,6 +1,7 @@
 package JavaCertified.tests;
 /*
  * 07/15/2024 Julio Conchas Lab08 Encapsulation 
+ * 07/23/2024 Julio Conchas Lab10 Polymorphism 
  */
 
 import JavaCertified.MyDate;
@@ -32,6 +33,19 @@ public class TestMyDate
         System.out.println(str4);
 
         MyDate.leapYears();
+
+        // Testing queals() method
+        MyDate newYear = new MyDate(1,1,2009);
+        MyDate fiscalStart = new MyDate(1,1,2009);
+
+        if( newYear.equals(fiscalStart) )
+        {
+            System.out.println("These two dates are equal");
+        }
+        else
+        {
+            System.out.println("These two dates are not equal");
+        }
     }
     
 }

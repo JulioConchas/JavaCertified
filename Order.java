@@ -4,18 +4,20 @@ package JavaCertified;
  * 07/03/2024 Julio Conchas Lab3 Static
  * 07/15/2024 Julio Conchas lab06 Syntax
  * 07/15/2024 Julio Conchas Lab08 Encapsulation 
+ * 07/23/2024 Julio Conchas Lab10 Polymorphism 
  */
 
 import javax.xml.crypto.KeySelector.Purpose;
 
 import JavaCertified.MyDate;
+import JavaCertified.Good;
 
 public class Order 
 {
     private MyDate orderDate;
     private double orderAmount = 0.00;
     private String customer;
-    private String product;
+    private Good product;
     private int quantity;
 
     static
@@ -25,25 +27,25 @@ public class Order
 
     public static double taxRate;
 
-    public Order(String product, int quantity)
+    public Order(Good product, int quantity)
     {
         this.product = product;
         this.quantity = quantity;
     }
-    public Order(MyDate orderDate, double orderAmount, String customer,String product, int quantity )
+    public Order(MyDate orderDate, double orderAmount, String customer,Good product, int quantity )
     {
         this(product, quantity);
         this.orderDate = orderDate;
         this.orderAmount = orderAmount;
         this.customer = customer;
     }
-    public Order(MyDate orderDate, double orderAmount, String customer)
-    {
-        this("Anvil", 1);
-        this.orderDate = orderDate;
-        this.orderAmount = orderAmount;
-        this.customer = customer;
-    }
+    // public Order(MyDate orderDate, double orderAmount, String customer)
+    // {
+    //     this("Anvil", 1);
+    //     this.orderDate = orderDate;
+    //     this.orderAmount = orderAmount;
+    //     this.customer = customer;
+    // }
     /*
      * GETTERS
      */
@@ -59,7 +61,7 @@ public class Order
     {
         return customer;
     }
-    public String getProducts()
+    public Good getProducts()
     {
         return product;
     }
@@ -84,7 +86,7 @@ public class Order
     {
         this.customer = customer;
     }
-    public void setProducts(String product)
+    public void setProducts(Good product)
     {
         this.product = product;
     }

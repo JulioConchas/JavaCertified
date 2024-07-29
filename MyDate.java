@@ -4,6 +4,7 @@ package JavaCertified;
  * 07/03/2023 Julio Conchas Lab3 Static
  * 07/15/2024 Julio Conchas lab06 Syntax
  * 07/15/2024 Julio Conchas Lab08 Encapsulation 
+ * 07/29/2024 Julio Conchas Lab10 Polymorphism 
  */
 public class MyDate 
 {
@@ -80,6 +81,17 @@ public class MyDate
                 System.out.println("The year " + year + " is leap year");
             }
         }
+    }
+    @Override
+    public boolean equals(Object o)
+    {
+        if ( o instanceof MyDate ) 
+        {
+            MyDate d = (MyDate)o;
+            if ( ( d.day == day ) && ( d.month == month ) && ( d.year == year ))
+                return true;  
+        }
+        return false;
     }
     public String toString()
     {
