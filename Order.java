@@ -5,6 +5,7 @@ package JavaCertified;
  * 07/15/2024 Julio Conchas lab06 Syntax
  * 07/15/2024 Julio Conchas Lab08 Encapsulation 
  * 07/23/2024 Julio Conchas Lab10 Polymorphism 
+ * 07/30/2024 Julio Conchas Lab 11 Abstract Interfaces 
  */
 
 import javax.xml.crypto.KeySelector.Purpose;
@@ -17,7 +18,7 @@ public class Order
     private MyDate orderDate;
     private double orderAmount = 0.00;
     private String customer;
-    private Good product;
+    private Product product;
     private int quantity;
 
     static
@@ -27,12 +28,12 @@ public class Order
 
     public static double taxRate;
 
-    public Order(Good product, int quantity)
+    public Order(Product product, int quantity)
     {
         this.product = product;
         this.quantity = quantity;
     }
-    public Order(MyDate orderDate, double orderAmount, String customer,Good product, int quantity )
+    public Order(MyDate orderDate, double orderAmount, String customer,Product product, int quantity )
     {
         this(product, quantity);
         this.orderDate = orderDate;
@@ -61,7 +62,7 @@ public class Order
     {
         return customer;
     }
-    public Good getProducts()
+    public Product getProducts()
     {
         return product;
     }

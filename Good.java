@@ -2,9 +2,10 @@ package JavaCertified;
 
 /*
  * 07/17/2024 Julio Conchas Lab 09 Inheritance
+ * 07/30/2024 Julio Conchas Lab 11 Abstract Interfaces 
  */
 
-public class Good 
+public abstract class Good implements Product
 {
     public enum UnitOfMeasureType { LITER, GALLON, CUBIC_METER, CUBIC_FEET };
 
@@ -44,7 +45,7 @@ public class Good
     public boolean isFlammable(){ return flammable; }
 
     // METHODS 
-    public double volume(){ return 0.0; }
+    public abstract double volume();
     public double weight(){ return volume() * weightPerUnitOfMeasure; }
     public final boolean canShipViaPostOffice()
     {

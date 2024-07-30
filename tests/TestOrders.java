@@ -5,7 +5,9 @@ import javax.sound.midi.Soundbank;
 import JavaCertified.MyDate;
 import JavaCertified.Order;
 import JavaCertified.Solid;
+import JavaCertified.Good;
 import JavaCertified.Good.UnitOfMeasureType;
+import JavaCertified.Service;
 
 public class TestOrders 
 {
@@ -21,6 +23,16 @@ public class TestOrders
 
         // MyDate date3 = new MyDate(5,20,2008);
         // Order anotherAnvil = new Order(date3, 200, "Road Runner");
+
+        /**
+         * // TEST : trying to create an instance of an abstract class (ILEGAL)
+         * jconchas@Julios-MacBook-Pro Java % javac JavaCertified/tests/TestOrders.java
+           JavaCertified/tests/TestOrders.java:27: error: Good is abstract; cannot be instantiated
+                Good g = new Good("Acme Earthquake Pills", 1304, 0.15, UnitOfMeasureType.CUBIC_FEET, false, 1);
+                         ^
+           1 error 
+         */
+        //Good g = new Good("Acme Earthquake Pills", 1304, 0.15, UnitOfMeasureType.CUBIC_FEET, false, 1);
 
         System.out.println(anvil);
         System.out.println(balloons);
@@ -41,8 +53,14 @@ public class TestOrders
         System.out.println("The total bill for : " + balloons + " is " + balloons.computeTotal());
 
         // lab 10 bonus Lab
-        System.out.println("The volue of the anvil is: " + anvil.getProducts().volume());
+        System.out.println("The volue of the anvil is: " + ((Solid)anvil.getProducts()).volume());
         System.out.println("The length of the anvil is: " + ((Solid)anvil.getProducts()).getLength());
+
+        MyDate date3 = new MyDate(4,10,2008);
+        Service road_runner_eradication_service = new Service("Road Runner Eradication", 14, false);
+        Order birdEradication = new Order(date3, 20000, "Daffy Duck", road_runner_eradication_service, 1);
+
+        System.out.println("The total bill for:  " + birdEradication + " is " + birdEradication.computeTotal());
 
     }    
 }
