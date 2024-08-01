@@ -62,5 +62,10 @@ public class TestOrders
 
         System.out.println("The total bill for:  " + birdEradication + " is " + birdEradication.computeTotal());
 
+        Order.setRushable((orderDate, orderAmount) -> orderAmount > 1500);
+
+        System.out.println("Anvil isPriorityOrde: " + anvil.isPriorityOrder());
+        System.out.println("Balloons is PriorityOrder: " + balloons.isPriorityOrder());
+
     }    
 }

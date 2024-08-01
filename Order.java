@@ -6,12 +6,14 @@ package JavaCertified;
  * 07/15/2024 Julio Conchas Lab08 Encapsulation 
  * 07/23/2024 Julio Conchas Lab10 Polymorphism 
  * 07/30/2024 Julio Conchas Lab 11 Abstract Interfaces 
+ * 07/31/2024 Julio Conchas Lab 12 Lambda
  */
 
 import javax.xml.crypto.KeySelector.Purpose;
 
 import JavaCertified.MyDate;
 import JavaCertified.Good;
+import JavaCertified.Rushable;
 
 public class Order 
 {
@@ -20,6 +22,8 @@ public class Order
     private String customer;
     private Product product;
     private int quantity;
+
+    private static Rushable rushable;
 
     static
     {
@@ -70,6 +74,10 @@ public class Order
     {
         return quantity;
     }
+    public static Rushable getRushable()
+    {
+        return rushable;
+    }
     /*
      * SETTERS
      */
@@ -96,6 +104,10 @@ public class Order
         if (!isPositive(quantity)) 
             System.out.println("Only positive quantity please!");
         this.quantity = quantity;
+    }
+    public static void setRushable(Rushable rushable)
+    {
+        Order.rushable = rushable;
     }
     public static void setTaxRate( double newRate )
     {
@@ -150,6 +162,15 @@ public class Order
             classification = 'X';
         }
         return classification;
+    }
+    public boolean isPriorityOrder()
+    {
+        boolean priorityOrder = false;
+        if( rushable != null )
+        {
+            priorityOrder = rushable.isRushable(orderDate, orderAmount);
+        }
+        return priorityOrder;
     }
     public String toString()
     {
