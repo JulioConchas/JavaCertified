@@ -27,8 +27,8 @@ public class TestOrders
         Solid hammerType = new Solid("Acme Hammer", 281, 0.3, UnitOfMeasureType.CUBIC_METER, false, 100, 0.25, 0.3);
         Order hammer = new Order(hammerDate, 10.00, "Wile E Coyote", hammerType, 10);
 
-        // MyDate date3 = new MyDate(5,20,2008);
-        // Order anotherAnvil = new Order(date3, 200, "Road Runner");
+        MyDate holidayDate = new MyDate(1,1,2024);
+        Order anotherAnvil = new Order(holidayDate, 200, "Road Runner", hammerType,10);
 
         /**
          * // TEST : trying to create an instance of an abstract class (ILEGAL)

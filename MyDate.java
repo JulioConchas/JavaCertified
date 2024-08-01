@@ -5,13 +5,27 @@ package JavaCertified;
  * 07/15/2024 Julio Conchas lab06 Syntax
  * 07/15/2024 Julio Conchas Lab08 Encapsulation 
  * 07/29/2024 Julio Conchas Lab10 Polymorphism 
+ * 08/01/2024 Julio Conchas Lab 14 Arrays
  */
 public class MyDate 
 {
     private byte day;
     private byte month;
     private short year;
-    
+
+    private static MyDate[] holidays;
+
+    static 
+    {
+        holidays = new MyDate[6];
+        holidays[0] = new MyDate(1,1,2024);
+        holidays[1] = new MyDate(5,30,2024);
+        holidays[2] = new MyDate(7,4,2024);
+        holidays[3] = new MyDate(9,5,2024);
+        holidays[4] = new MyDate(11,24,2024);
+        holidays[5] = new MyDate(12,25,2024);
+    }
+     
     /*
      * This initialization block also help prevent 
      * crete a date with not valid data 
@@ -45,6 +59,10 @@ public class MyDate
     public int getYear()
     {
         return year;
+    }
+    public static MyDate[] getHolidays()
+    {
+        return holidays;
     }
     /*
      * SETTERS
@@ -92,6 +110,12 @@ public class MyDate
                 return true;  
         }
         return false;
+    }
+    public static void listHolidays()
+    {
+        System.out.println("The holidays are: ");
+        for(MyDate holiday : holidays)
+            System.out.println(holiday);
     }
     public String toString()
     {

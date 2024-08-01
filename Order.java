@@ -7,6 +7,7 @@ package JavaCertified;
  * 07/23/2024 Julio Conchas Lab10 Polymorphism 
  * 07/30/2024 Julio Conchas Lab 11 Abstract Interfaces 
  * 07/31/2024 Julio Conchas Lab 12 Lambda
+ * 08/01/2024 Julio Conchas Lab 14 Arrays
  */
 
 import javax.xml.crypto.KeySelector.Purpose;
@@ -40,7 +41,7 @@ public class Order
     public Order(MyDate orderDate, double orderAmount, String customer,Product product, int quantity )
     {
         this(product, quantity);
-        this.orderDate = orderDate;
+        setOrderDate(orderDate);
         this.orderAmount = orderAmount;
         this.customer = customer;
     }
@@ -83,7 +84,10 @@ public class Order
      */
     public void setOrderDate(MyDate orderDate)
     {
-        this.orderDate = orderDate;
+        if( isHoliday(orderDate) )
+            System.out.println("Order date, " + orderDate + ", cannot be set to holiday!!");
+        else
+            this.orderDate = orderDate;
     }
     public void setOrderAmount(double orderAmount)
     {
@@ -182,6 +186,16 @@ public class Order
     private boolean isPositive(int n)
     {
         return (n > 0);
+    }
+    private boolean isHoliday(MyDate propoDate)
+    {
+        boolean result = false;
+        for(MyDate holiday : MyDate.getHolidays())
+        {
+            if( holiday.equals(propoDate) )
+                result = true;
+        }
+        return result;
     }
     
 }

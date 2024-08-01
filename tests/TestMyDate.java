@@ -2,6 +2,7 @@ package JavaCertified.tests;
 /*
  * 07/15/2024 Julio Conchas Lab08 Encapsulation 
  * 07/23/2024 Julio Conchas Lab10 Polymorphism 
+ * 08/01/2024 Julio Conchas Lab 14 Arrays
  */
 
 import JavaCertified.MyDate;
@@ -46,6 +47,9 @@ public class TestMyDate
         {
             System.out.println("These two dates are not equal");
         }
+
+        // testing Holidays
+        MyDate.listHolidays();
     }
     
 }

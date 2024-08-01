@@ -58,5 +58,17 @@ public class TestConversionService
         System.out.println(bigGrams);
         long bigGrams2 = 1234567890L * 1000L;
         System.out.println(bigGrams2);
+
+        System.out.println("------------------------------------");
+        double[][] results = ConversionService.allKgToPounds(14.0,29.0,6,5,7.7);
+        for(double[] result : results)
+            System.out.println(result[0] + " -> " + result[1]);
+        
+        System.out.println("------------------------------------");
+        results = ConversionService.allKgToPounds(2, 5, 8, 4);
+        for(double[] result : results)
+            System.out.println(result[0] + " -> " + result[1]);
+
+
     }
 }
