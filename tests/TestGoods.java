@@ -1,5 +1,7 @@
 package JavaCertified.tests;
 
+import javax.sound.midi.Soundbank;
+
 import JavaCertified.Good;
 import JavaCertified.Liquid;
 import JavaCertified.Solid;
@@ -31,5 +33,18 @@ public class TestGoods
         System.out.println(glue + " can ship via Post office? " + glue.canShipViaPostOffice());
         System.out.println(paint + " can ship via Post office? " + paint.canShipViaPostOffice());
         System.out.println(anvil + " can ship via Post office? " + anvil.canShipViaPostOffice());
+
+        System.out.println("#########################################################");
+        System.out.println(Good.getCatalog());
+        Good.getCatalog().remove("Acme Oil");
+        System.out.println("#########################################################");
+        System.out.println(Good.getCatalog());
+        Solid toaster = new Solid("Acme Toaster", 1755, 0.75, UnitOfMeasureType.CUBIC_FEET, false, 1.0, 1.0, 1.0);
+        Good.getCatalog().add(toaster);
+        Good.getCatalog().add(toaster);
+        System.out.println("#########################################################");
+        System.out.println(Good.getCatalog());
+        System.out.println("######################### flammables ################################");
+        System.out.println(Good.flammablesList());
     }
 }
