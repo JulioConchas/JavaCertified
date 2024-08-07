@@ -1,4 +1,7 @@
 package JavaCertified;
+
+import JavaCertified.HolidayOrdersNotAllowedException;
+
 /*
  * 06/27/2024 Julio Conchas Lab01 Creating Classes
  * 07/03/2023 Julio Conchas Lab3 Static
@@ -6,6 +9,7 @@ package JavaCertified;
  * 07/15/2024 Julio Conchas Lab08 Encapsulation 
  * 07/29/2024 Julio Conchas Lab10 Polymorphism 
  * 08/01/2024 Julio Conchas Lab 14 Arrays
+ * 08/07/2024 Julio Conchas Lab 17 Exceptions
  */
 public class MyDate 
 {
@@ -40,10 +44,15 @@ public class MyDate
     public MyDate(){}
     public MyDate(int month, int day, int year)
     {   
-        if ( valid(day, month, year) )
-        this.month = (byte) month;
-        this.day = (byte) day;
-        this.year = (short) year;
+        try {
+            valid(day, month, year);
+            this.month = (byte) month;
+            this.day = (byte) day;
+            this.year = (short) year;
+        } catch (HolidayOrdersNotAllowedException e) 
+        {
+            System.out.println("Attempting to create a non-valid date : " + month + "/" + day + "/" + month);
+        }
     }
     /*
      * GETTERS
@@ -69,25 +78,45 @@ public class MyDate
      */
     public void setDay(int day)
     {
-        if ( valid(day, this.month, this.year) )
+        try {
+            valid(day, this.month, this.year);
             this.day = (byte) day;
+        } catch (HolidayOrdersNotAllowedException e) 
+        {
+            System.out.println("Attempting to create a non-valid date : " + month + "/" + day + "/" + month);
+        }
     }
     public void setMonth(int month)
     {
-        if ( valid(this.day, month, this.year) )
-        this.month = (byte) month;
+        try {
+            valid(this.day, month, this.year);
+            this.month = (byte) month;
+        } catch (HolidayOrdersNotAllowedException e) 
+        {
+            System.out.println("Attempting to create a non-valid date : " + month + "/" + day + "/" + month);
+        }
     }
     public void setYear(int year)
     {
-        if ( valid(this.day, this.month, year) )
-        this.year = (short) year;
+        try {
+            valid(this.day, this.month, year);
+            this.month = (byte) month;
+        } catch (HolidayOrdersNotAllowedException e) 
+        {
+            System.out.println("Attempting to create a non-valid date : " + month + "/" + day + "/" + month);
+        }
     }
     public void setDate(int month, int day, int year)
     {
-        if ( valid(day, month, year) )
-        this.month = (byte) month;
-        this.day = (byte) day;
-        this.year = (short) year;
+        try {
+            valid(day, month, year);
+            this.month = (byte) month;
+            this.day = (byte) day;
+            this.year = (short) year;
+        } catch (HolidayOrdersNotAllowedException e) 
+        {
+            System.out.println("Attempting to create a non-valid date : " + month + "/" + day + "/" + month);
+        }
     }
     public static void leapYears()
     {
@@ -124,19 +153,26 @@ public class MyDate
     /*
      * PRIVATE
      */
-    private boolean valid( int day, int month, int year )
+    private void valid( int day, int month, int year ) throws HolidayOrdersNotAllowedException
     {
+        HolidayOrdersNotAllowedException invalidDateException = new HolidayOrdersNotAllowedException("non-valid date : " +  month + "/" + day + "/" + month);
         if ( day > 31 || day < 1 || month > 12 || month < 1)
+        {
             System.out.println("Attempting to create a non-valid date : " + month + "/" + day + "/" + month);
+            throw invalidDateException;
+        }
         switch ( month )
         {
             case 4:
             case 6:
             case 9:
-            case 11: return ( day <= 30 );
-            case 2: return day <= 28 || ( day == 29 && year % 4 == 0 );
+            case 11:
+                if ( day > 30 )
+                    throw invalidDateException;
+            case 2:
+                if (day > 29 || ( day == 29 && year % 4 != 0 ) )
+                    throw invalidDateException;
         }
-        return true;
     }
     
 }

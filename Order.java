@@ -8,13 +8,16 @@ package JavaCertified;
  * 07/30/2024 Julio Conchas Lab 11 Abstract Interfaces 
  * 07/31/2024 Julio Conchas Lab 12 Lambda
  * 08/01/2024 Julio Conchas Lab 14 Arrays
+ * 08/07/2024 Julio Conchas Lab 17 Exceptions
  */
 
+import javax.sound.midi.Soundbank;
 import javax.xml.crypto.KeySelector.Purpose;
 
 import JavaCertified.MyDate;
 import JavaCertified.Good;
 import JavaCertified.Rushable;
+import JavaCertified.HolidayOrdersNotAllowedException;
 
 public class Order 
 {
@@ -41,7 +44,16 @@ public class Order
     public Order(MyDate orderDate, double orderAmount, String customer,Product product, int quantity )
     {
         this(product, quantity);
-        setOrderDate(orderDate);
+        try 
+        {
+            setOrderDate(orderDate);
+        }
+        catch( HolidayOrdersNotAllowedException e )
+        {
+            System.out.println("The order date for an order cannot be a holiday! Application closing.");
+            System.exit(0);
+        }
+        
         this.orderAmount = orderAmount;
         this.customer = customer;
     }
@@ -82,10 +94,13 @@ public class Order
     /*
      * SETTERS
      */
-    public void setOrderDate(MyDate orderDate)
+    public void setOrderDate(MyDate orderDate) throws HolidayOrdersNotAllowedException
     {
         if( isHoliday(orderDate) )
+        {
             System.out.println("Order date, " + orderDate + ", cannot be set to holiday!!");
+            throw new HolidayOrdersNotAllowedException(orderDate);
+        }
         else
             this.orderDate = orderDate;
     }
