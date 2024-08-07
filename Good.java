@@ -7,6 +7,7 @@ import java.util.Iterator;
  * 07/17/2024 Julio Conchas Lab 09 Inheritance
  * 07/30/2024 Julio Conchas Lab 11 Abstract Interfaces 
  * 08/05/2024 Julio Conchas Lab 15 Collections
+ * 08/07/2024 Julio Conchas Lab 16 Mode with collections
  */
 
  import java.util.List;
@@ -14,8 +15,9 @@ import java.util.Iterator;
  import java.util.Set;
  import java.util.HashSet;
  import java.util.Iterator;
+ import java.util.Comparator;
 
-public abstract class Good implements Product
+public abstract class Good implements Product, Comparable<Good>, Comparator<Good>
 {
     public enum UnitOfMeasureType { LITER, GALLON, CUBIC_METER, CUBIC_FEET };
 
@@ -25,8 +27,8 @@ public abstract class Good implements Product
     private UnitOfMeasureType unitOfMeasure;
     private boolean flammable = true;
     private double weightPerUnitOfMeasure;
-    //private static List catalog;
-    private static Set catalog;
+    private static List<Good> catalog;
+    //private static Set catalog;
 
     static 
     {
@@ -39,8 +41,8 @@ public abstract class Good implements Product
         Liquid nitro = new Liquid("Acme Nitroglycerin", 4289, 1.0, UnitOfMeasureType.CUBIC_FEET, true, 1.5, 0.25);
         Liquid oil = new Liquid("Acme Oil", 4274, 1.0, UnitOfMeasureType.CUBIC_METER, true, 1.5, 0.25);
         
-        //catalog = new ArrayList<>();
-        catalog = new HashSet();
+        catalog = new ArrayList<>();
+        //catalog = new HashSet();
         catalog.add(glue);
         catalog.add(paint);
         catalog.add(anvil);
@@ -69,8 +71,8 @@ public abstract class Good implements Product
     public double getHeight(){ return height; }
     public UnitOfMeasureType getUnitOfMeasure(){ return unitOfMeasure; }
     public double getWeightPerUnitOfMeasure(){ return weightPerUnitOfMeasure; }
-    //public static List getCatalog(){ return catalog; }
-    public static Set getCatalog(){ return catalog; }
+    public static List<Good> getCatalog(){ return catalog; }
+    //public static Set getCatalog(){ return catalog; }
     // SETTERS
     public void setName(String name){ this.name = name; }
     public void setModelNumber(int modelNumber){ this.modelNumber = modelNumber; }
@@ -90,17 +92,35 @@ public abstract class Good implements Product
             return true;
         return false;
     }
-    public static Set flammablesList()
+    public static Set<Good> flammablesList()
     {
-        Set flammables = new HashSet();
-        Iterator i = Good.getCatalog().iterator();
+        Set<Good> flammables = new HashSet<>();
+        Iterator<Good> i = Good.getCatalog().iterator();
         while( i.hasNext() )
         {
-            Good x = (Good) i.next();
+            Good x = i.next();
             if( x.isFlammable() )
                 flammables.add(x);
         }
         return flammables;
+    }
+    public int compareTo(Good o )
+    {
+        /**
+         * To order by model number, use the following
+         * lines of code instead
+         * if ( getModelNumber() < o.getModelNumber() )
+         *  return -1;
+         * else if ( getModelNumber() > o.getModelNumber() )
+         *  return 1;
+         * else
+         *  retrn 0;
+         */
+        return getName().compareTo(o.getName());
+    }
+    public int compare(Good o)
+    {
+        return getName().compareTo(o.getName());
     }
     public String toString()
     {

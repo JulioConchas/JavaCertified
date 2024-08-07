@@ -6,6 +6,8 @@ import JavaCertified.Good;
 import JavaCertified.Liquid;
 import JavaCertified.Solid;
 import JavaCertified.Good.UnitOfMeasureType;
+import java.util.List;
+import java.util.Collections;
 
 public class TestGoods
 {
@@ -46,5 +48,18 @@ public class TestGoods
         System.out.println(Good.getCatalog());
         System.out.println("######################### flammables ################################");
         System.out.println(Good.flammablesList());
+        System.out.println("######################### sort Catalog ################################");
+        Collections.sort((List<Good>) Good.getCatalog());
+        System.out.println(Good.getCatalog());
+        System.out.println("######################### search ################################");
+
+        Liquid searchGood = new Liquid("Acme Invisible Pain", 2490, 0.65, UnitOfMeasureType.GALLON, true, 0.70, 12);
+        System.out.println("Good to seach : " + searchGood);
+        int index = Collections.binarySearch(Good.getCatalog(), searchGood);
+        if ( index >= 0 ) 
+            System.out.println("Good found : " + Good.getCatalog().get(index));
+        else 
+            System.out.println(searchGood + " NOt Found");
+        
     }
 }
